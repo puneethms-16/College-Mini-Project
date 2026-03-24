@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Resume Screening System</title>
+
+    <!-- Theme script - Apply to BODY before render -->
+    <script>
+      (function () {
+        const theme = localStorage.getItem("theme") || "light";
+        if (theme === "dark") {
+          // Wait for body to exist, but still before visible render
+          if (document.body) {
+            document.body.classList.add("dark-mode");
+          } else {
+            document.addEventListener("DOMContentLoaded", function () {
+              document.body.classList.add("dark-mode");
+            });
+          }
+        }
+      })();
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Apply dark mode instantly -->
+    <script>
+      const theme = localStorage.getItem("theme") || "light";
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark-mode");
+        document.body.classList.add("dark-mode");
+      }
+    </script>
+
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <h2>🤖 AI Resume Screener</h2>
+        </div>
+
+        <!-- Hamburger Menu Button (Mobile Only) -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Navigation Menu -->
+        <div class="nav-right" id="navMenu">
+          <!-- Theme Toggle FIRST (Before Home) -->
+          <label for="theme" class="theme">
+            <span class="theme__toggle-wrap">
+              <input
+                id="theme"
+                class="theme__toggle"
+                type="checkbox"
+                role="switch"
+                name="theme"
+                value="dark"
+              />
+              <span class="theme__icon">
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+              </span>
+            </span>
+          </label>
+
+          <!-- Menu Links AFTER Toggle -->
+          <ul class="nav-menu">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="upload.html">Upload Resume</a></li>
+            <li><a href="results.html">View Results</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container main-content">
+      <div class="upload-section">
+        <h1>Upload Resume</h1>
+        <p class="subtitle">
+          Upload candidate resumes and provide job requirements for AI-powered
+          screening
+        </p>
+
+        <div class="upload-card">
+          <form id="uploadForm" enctype="multipart/form-data">
+            <div class="form-group">
+              <label for="jobDescription">Job Description *</label>
+              <textarea
+                id="jobDescription"
+                name="jobDescription"
+                rows="8"
+                placeholder="Paste the job description here including required skills, qualifications, and responsibilities..."
+                required
+              ></textarea>
+              <small
+                >Include key skills, experience requirements, and
+                qualifications</small
+              >
+            </div>
+
+            <div class="form-group">
+              <label for="resumeFile">Select Resume File *</label>
+              <div class="file-upload-wrapper">
+                <input
+                  type="file"
+                  id="resumeFile"
+                  name="resume"
+                  accept=".pdf,.docx,.doc"
+                  required
+                />
+                <label for="resumeFile" class="file-upload-label">
+                  <span class="file-upload-icon">📁</span>
+                  <span class="file-upload-text">Choose File</span>
+                </label>
+                <span class="file-name">No file chosen</span>
+              </div>
+              <small>Supported formats: PDF, DOCX (Max size: 16MB)</small>
+            </div>
+
+            <div class="form-actions">
+              <button type="submit" class="btn btn-primary" id="submitBtn">
+                <span class="btn-text">Upload & Analyze</span>
+                <span class="btn-loader" style="display: none"
+                  >Processing...</span
+                >
+              </button>
+              <button type="button" class="btn btn-secondary" id="screenAllBtn">
+                Screen All Resumes
+              </button>
+            </div>
+          </form>
+
+          <div id="resultMessage" class="message" style="display: none"></div>
+
+          <div id="uploadResult" class="upload-result" style="display: none">
+            <h3>Analysis Results</h3>
+            <div class="result-grid">
+              <div class="result-item">
+                <span class="result-label">Match Score:</span>
+                <span class="result-value" id="matchScore">-</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">Skills Found:</span>
+                <span class="result-value" id="skillsCount">-</span>
+              </div>
+              <div class="result-item">
+                <span class="result-label">Experience:</span>
+                <span class="result-value" id="experience">-</span>
+              </div>
+            </div>
+            <div class="skills-section">
+              <h4>Extracted Skills:</h4>
+              <div id="skillsList" class="skills-tags"></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="info-cards">
+          <div class="info-card">
+            <h3>💡 Tips for Better Results</h3>
+            <ul>
+              <li>Provide detailed job descriptions with specific skills</li>
+              <li>Ensure resumes are well-formatted and readable</li>
+              <li>Include both technical and soft skills in job description</li>
+              <li>Upload multiple resumes to compare candidates</li>
+            </ul>
+          </div>
+          <div class="info-card">
+            <h3>📋 What We Extract</h3>
+            <ul>
+              <li>Contact information (email, phone)</li>
+              <li>Technical and soft skills</li>
+              <li>Work experience and years</li>
+              <li>Education qualifications</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 AI Resume Screening System. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="js/upload.js"></script>
+  </body>
+</html>

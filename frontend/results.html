@@ -1,0 +1,154 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Resume Screening System</title>
+
+    <!-- Theme script - Apply to BODY before render -->
+    <script>
+      (function () {
+        const theme = localStorage.getItem("theme") || "light";
+        if (theme === "dark") {
+          // Wait for body to exist, but still before visible render
+          if (document.body) {
+            document.body.classList.add("dark-mode");
+          } else {
+            document.addEventListener("DOMContentLoaded", function () {
+              document.body.classList.add("dark-mode");
+            });
+          }
+        }
+      })();
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Apply dark mode instantly -->
+    <script>
+      const theme = localStorage.getItem("theme") || "light";
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark-mode");
+        document.body.classList.add("dark-mode");
+      }
+    </script>
+
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <h2>🤖 AI Resume Screener</h2>
+        </div>
+
+        <!-- Hamburger Menu Button (Mobile Only) -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Navigation Menu -->
+        <div class="nav-right" id="navMenu">
+          <!-- Theme Toggle FIRST (Before Home) -->
+          <label for="theme" class="theme">
+            <span class="theme__toggle-wrap">
+              <input
+                id="theme"
+                class="theme__toggle"
+                type="checkbox"
+                role="switch"
+                name="theme"
+                value="dark"
+              />
+              <span class="theme__icon">
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+              </span>
+            </span>
+          </label>
+
+          <!-- Menu Links AFTER Toggle -->
+          <ul class="nav-menu">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="upload.html">Upload Resume</a></li>
+            <li><a href="results.html">View Results</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <div class="container main-content">
+      <div class="results-section">
+        <div class="results-header">
+          <h1>Screening Results</h1>
+          <div class="results-actions">
+            <button class="btn btn-secondary" id="refreshBtn">
+              🔄 Refresh
+            </button>
+            <button class="btn btn-danger" id="clearBtn">🗑️ Clear All</button>
+          </div>
+        </div>
+
+        <div id="statsCards" class="stats-cards">
+          <div class="stat-card">
+            <h3 id="totalResumes">0</h3>
+            <p>Total Resumes</p>
+          </div>
+          <div class="stat-card">
+            <h3 id="avgScore">0%</h3>
+            <p>Average Match</p>
+          </div>
+          <div class="stat-card">
+            <h3 id="topCandidates">0</h3>
+            <p>Top Candidates (>70%)</p>
+          </div>
+        </div>
+
+        <div class="screen-section">
+          <h2>Screen with Job Description</h2>
+          <div class="screen-form">
+            <textarea
+              id="screenJobDescription"
+              placeholder="Enter job description to re-screen all resumes..."
+              rows="4"
+            ></textarea>
+            <button class="btn btn-primary" id="screenNowBtn">
+              Screen All Resumes
+            </button>
+          </div>
+        </div>
+
+        <div id="loadingMessage" class="loading" style="display: none">
+          <div class="loader"></div>
+          <p>Loading results...</p>
+        </div>
+
+        <div id="resultsContainer" class="results-container">
+          <!-- Results will be inserted here dynamically -->
+        </div>
+
+        <div id="noResults" class="no-results" style="display: none">
+          <div class="no-results-icon">📭</div>
+          <h3>No Resumes Found</h3>
+          <p>Upload some resumes to see results here</p>
+          <a href="upload.html" class="btn btn-primary">Upload Resume</a>
+        </div>
+      </div>
+    </div>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 AI Resume Screening System. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="js/results.js"></script>
+  </body>
+</html>

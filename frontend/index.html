@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AI Resume Screening System</title>
+
+    <!-- Theme script - Apply to BODY before render -->
+    <script>
+      (function () {
+        const theme = localStorage.getItem("theme") || "light";
+        if (theme === "dark") {
+          // Wait for body to exist, but still before visible render
+          if (document.body) {
+            document.body.classList.add("dark-mode");
+          } else {
+            document.addEventListener("DOMContentLoaded", function () {
+              document.body.classList.add("dark-mode");
+            });
+          }
+        }
+      })();
+    </script>
+
+    <link rel="stylesheet" href="css/styles.css" />
+  </head>
+  <body>
+    <!-- Apply dark mode instantly -->
+    <script>
+      const theme = localStorage.getItem("theme") || "light";
+      if (theme === "dark") {
+        document.documentElement.classList.add("dark-mode");
+        document.body.classList.add("dark-mode");
+      }
+    </script>
+
+    <nav class="navbar">
+      <div class="container">
+        <div class="nav-brand">
+          <h2>🤖 AI Resume Screener</h2>
+        </div>
+
+        <!-- Hamburger Menu Button (Mobile Only) -->
+        <button class="menu-toggle" id="menuToggle" aria-label="Toggle Menu">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+
+        <!-- Navigation Menu -->
+        <div class="nav-right" id="navMenu">
+          <!-- Theme Toggle FIRST (Before Home) -->
+          <label for="theme" class="theme">
+            <span class="theme__toggle-wrap">
+              <input
+                id="theme"
+                class="theme__toggle"
+                type="checkbox"
+                role="switch"
+                name="theme"
+                value="dark"
+              />
+              <span class="theme__icon">
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+                <span class="theme__icon-part"></span>
+              </span>
+            </span>
+          </label>
+
+          <!-- Menu Links AFTER Toggle -->
+          <ul class="nav-menu">
+            <li><a href="index.html" class="active">Home</a></li>
+            <li><a href="upload.html">Upload Resume</a></li>
+            <li><a href="results.html">View Results</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <header class="hero">
+      <div class="container">
+        <h1>AI-Powered Resume Screening</h1>
+        <p>
+          Automate your hiring process with intelligent resume analysis and
+          candidate ranking
+        </p>
+        <div class="hero-buttons">
+          <a href="upload.html" class="btn btn-primary">Get Started</a>
+          <a href="#features" class="btn btn-secondary">Learn More</a>
+        </div>
+      </div>
+    </header>
+
+    <section id="features" class="features">
+      <div class="container">
+        <h2>Key Features</h2>
+        <div class="feature-grid">
+          <div class="feature-card">
+            <div class="feature-icon">📄</div>
+            <h3>Smart Parsing</h3>
+            <p>
+              Extract information from PDF and DOCX resumes automatically using
+              advanced NLP
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🎯</div>
+            <h3>Intelligent Matching</h3>
+            <p>
+              Match candidates with job requirements using AI-powered similarity
+              algorithms
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">📊</div>
+            <h3>Automated Ranking</h3>
+            <p>
+              Rank candidates based on skills, experience, and education match
+              scores
+            </p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3>Fast Processing</h3>
+            <p>Screen hundreds of resumes in seconds, saving valuable time</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">🔍</div>
+            <h3>Skill Extraction</h3>
+            <p>Automatically identify technical and soft skills from resumes</p>
+          </div>
+          <div class="feature-card">
+            <div class="feature-icon">✅</div>
+            <h3>Bias-Free Selection</h3>
+            <p>
+              Fair and objective candidate evaluation based on qualifications
+            </p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="how-it-works">
+      <div class="container">
+        <h2>How It Works</h2>
+        <div class="steps">
+          <div class="step">
+            <div class="step-number">1</div>
+            <h3>Upload Resumes</h3>
+            <p>Upload candidate resumes in PDF or DOCX format</p>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <h3>Add Job Description</h3>
+            <p>Provide the job description with required skills</p>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <h3>AI Processing</h3>
+            <p>System analyzes and extracts key information</p>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <h3>Get Results</h3>
+            <p>View ranked candidates with match scores</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta">
+      <div class="container">
+        <h2>Ready to Transform Your Hiring?</h2>
+        <p>Start screening resumes intelligently today</p>
+        <a href="upload.html" class="btn btn-primary btn-large"
+          >Upload Resume Now</a
+        >
+      </div>
+    </section>
+
+    <footer>
+      <div class="container">
+        <p>&copy; 2025 AI Resume Screening System. All rights reserved.</p>
+      </div>
+    </footer>
+
+    <script src="js/main.js"></script>
+  </body>
+</html>
